@@ -4,8 +4,11 @@ from utils.user_input import UserInputHandler
 
 def main():
     """Main entry point for the movie recommendation system"""
-    print("🎬 Welcome to the AI Movie Recommendation System!")
-    
+    print("\n" + "="*50)
+    print("🎬 AI MOVIE RECOMMENDATION SYSTEM")
+    print("="*50)
+    print("\n")
+
     # Initialize components
     scraper = IMDBScraper()
     recommender = AIRecommender()

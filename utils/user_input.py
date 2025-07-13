@@ -10,9 +10,6 @@ class UserInputHandler:
     
     def get_user_preferences(self) -> Dict[str, str]:
         """Collect user preferences through interactive prompts"""
-        print("\n" + "="*50)
-        print("🎬 AI MOVIE RECOMMENDATION SYSTEM")
-        print("="*50)
         
         preferences = {}
         
