@@ -3,16 +3,19 @@ from utils.user_input import UserInputHandler
 
 def main():
     """Main entry point for the direct AI movie recommendation system"""
-    
+    print("\n" + "="*50)
+    print("🎬 WELCOME TO THE AI MOVIE EXPERT!")
+    print("="*50)
+
     # Initialize components
     recommender = AIRecommender()
     input_handler = UserInputHandler()
     
     try:
-        # Get user preferences (including year)
+        # Get user's preferences
         preferences = input_handler.get_user_preferences()
         
-        # Get AI recommendations directly (no movie list needed)
+        # Get AI recommendations
         print("\n🤖 Consulting AI movie expert...")
         recommendations = recommender.get_direct_recommendations(preferences)
         
@@ -23,10 +26,21 @@ def main():
         input_handler.offer_movie_details(recommender)
         
         # Ask for new recommendations
-        if input_handler.ask_for_new_recommendations():
-            new_preferences = input_handler.get_user_preferences()
-            new_recommendations = recommender.get_direct_recommendations(new_preferences)
-            input_handler.display_recommendations(new_recommendations)
+        while input_handler.ask_for_new_recommendations():
+            recommendation_type = input_handler.get_recommendation_type()
+            
+            if recommendation_type == "refine":
+                # Use follow-up questions to refine current recommendations
+                follow_up_responses = input_handler.get_follow_up_preferences(recommendations)
+                refined_recommendations = recommender.get_refined_recommendations(
+                    preferences, recommendations, follow_up_responses
+                )
+                input_handler.display_recommendations(refined_recommendations)
+            else:
+                # Start completely fresh with new preferences
+                new_preferences = input_handler.get_user_preferences()
+                new_recommendations = recommender.get_direct_recommendations(new_preferences)
+                input_handler.display_recommendations(new_recommendations)
             
     except KeyboardInterrupt:
         print("\n👋 Thanks for using the AI Movie Expert!")

@@ -121,6 +121,7 @@ Provide detailed information about the movie "{movie_query}":
 3. **Where to Watch:** Common streaming platforms or rental options
 4. **Similar Movies:** 2-3 movies with similar vibes
 5. **Fun Fact:** One interesting piece of trivia
+6. **Rating:** Search for any available ratings (IMDb, Rotten Tomatoes, etc.)
 
 Keep it concise but informative.
 """

@@ -11,7 +11,7 @@ class Config:
     
     # AI Settings
     AI_MODEL = "gpt-4o-mini"
-    AI_MAX_TOKENS = 800  # Increased for detailed recommendations
+    AI_MAX_TOKENS = 800 
     AI_TEMPERATURE = 0.7
     
     # Movie Detail Settings

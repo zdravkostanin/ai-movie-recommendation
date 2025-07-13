@@ -5,10 +5,7 @@ class UserInputHandler:
     
     def get_user_preferences(self) -> Dict[str, str]:
         """Collect user preferences including year and enhanced options"""
-        print("\n" + "="*50)
-        print("🎬 WELCOME TO THE AI MOVIE EXPERT!")
-        print("="*50)
-        
+
         preferences = {}
         
         questions = [
@@ -41,7 +38,7 @@ class UserInputHandler:
         print("\n" + "="*50)
         while True:
             movie_query = input("Want details about any of these movies? (Enter movie name or 'quit'): ").strip()
-            if movie_query.lower() in ['quit', 'exit', 'q', '']:
+            if movie_query.lower() in ['quit', 'exit', 'q', '', 'Q', 'QUIT', 'EXIT']:
                 break
             
             print(f"\n📖 Details for '{movie_query}':")
@@ -54,6 +51,21 @@ class UserInputHandler:
         print("\n" + "="*50)
         again = input("Would you like new recommendations with different preferences? (y/n): ").strip().lower()
         return again in ['y', 'yes']
+    
+    def get_recommendation_type(self) -> str:
+        """Ask user if they want to refine current recommendations or start fresh"""
+        print("\n" + "🔄 RECOMMENDATION OPTIONS:")
+        print("1. Refine these recommendations (quick follow-up questions)")
+        print("2. Start completely fresh (new preferences)")
+        
+        while True:
+            choice = input("\nChoose option (1 or 2): ").strip()
+            if choice == "1":
+                return "refine"
+            elif choice == "2":
+                return "fresh"
+            else:
+                print("Please enter 1 or 2")
     
     def get_follow_up_preferences(self, initial_recommendations: str) -> str:
         """Get follow-up preferences based on initial recommendations"""
