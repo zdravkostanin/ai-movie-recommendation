@@ -4,25 +4,19 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Config:
-    """Configuration settings for the application"""
+    """Configuration settings for the direct AI recommendation application"""
     
     # API Keys
     OPENAI_API_KEY = os.getenv("OPEN_AI_API_KEY")
     
-    # IMDB Settings
-    IMDB_BASE_URL = "https://www.imdb.com/search/title/"
-    DEFAULT_YEAR = "2020"
-    DEFAULT_LIMIT = 25
-    
-    # Request Headers
-    HEADERS = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-    }
-    
     # AI Settings
     AI_MODEL = "gpt-4o-mini"
-    AI_MAX_TOKENS = 600
+    AI_MAX_TOKENS = 800  # Increased for detailed recommendations
     AI_TEMPERATURE = 0.7
+    
+    # Movie Detail Settings
+    DETAIL_MAX_TOKENS = 400
+    DETAIL_TEMPERATURE = 0.3
     
     @classmethod
     def validate_config(cls):

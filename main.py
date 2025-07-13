@@ -1,49 +1,35 @@
-from scrapers.imdb_scraper import IMDBScraper
 from ai.recommender import AIRecommender
 from utils.user_input import UserInputHandler
 
 def main():
-    """Main entry point for the movie recommendation system"""
-    print("\n" + "="*50)
-    print("🎬 AI MOVIE RECOMMENDATION SYSTEM")
-    print("="*50)
-    print("\n")
-
+    """Main entry point for the direct AI movie recommendation system"""
+    
     # Initialize components
-    scraper = IMDBScraper()
     recommender = AIRecommender()
     input_handler = UserInputHandler()
     
     try:
-        # Get user's year preference
-        year = input_handler.get_year_preference()
-        
-        # Scrape movies
-        print(f"\nScraping movies from {year}...")
-        movies = scraper.scrape_movies(year, limit=25)
-        
-        if not movies:
-            print("❌ No movies found. Please try again.")
-            return
-        
-        # Get user preferences
+        # Get user preferences (including year)
         preferences = input_handler.get_user_preferences()
         
-        # Get AI recommendations
-        print("\n🤖 Generating recommendations...")
-        recommendations = recommender.get_recommendations(movies, preferences)
+        # Get AI recommendations directly (no movie list needed)
+        print("\n🤖 Consulting AI movie expert...")
+        recommendations = recommender.get_direct_recommendations(preferences)
         
         # Display results
         input_handler.display_recommendations(recommendations)
         
+        # Offer movie details
+        input_handler.offer_movie_details(recommender)
+        
         # Ask for new recommendations
         if input_handler.ask_for_new_recommendations():
             new_preferences = input_handler.get_user_preferences()
-            new_recommendations = recommender.get_recommendations(movies, new_preferences)
+            new_recommendations = recommender.get_direct_recommendations(new_preferences)
             input_handler.display_recommendations(new_recommendations)
             
     except KeyboardInterrupt:
-        print("\n👋 Thanks for using the movie recommender!")
+        print("\n👋 Thanks for using the AI Movie Expert!")
     except Exception as e:
         print(f"❌ An error occurred: {str(e)}")
 
